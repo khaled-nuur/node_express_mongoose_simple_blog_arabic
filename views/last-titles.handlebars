@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/blog.css">
+</head>
+
+<body>
+    <ul>
+        <li class="last-titles">
+        {{#each article}}
+            <a href="../article/{{this.title}}">{{this.title}}</a>
+            <br>
+            <small>{{this._desc}}</small>
+            <hr>  
+{{/each}}
+        </li> 
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang=ar>
+
+<head>
+    <meta charset=UTF-8>
+    <title>مدونتي المحبوبة - الرئيسية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel=stylesheet href="../css/blog.css">
+
+</head>
+<header>
+
+    <img src="img/logo.svg" alt="" class='logo' style="hight:10px;">
+    <h1 id="title">هذه مدونتي</h1>
+    <div class="left">
+        <a href="../login">
+            <button class="header-btn">
+            <img class="icon" src="../img/log in.svg" alt="">
+        <span class="header-txt hide-small">دخول</span>
+        </button>
+        </a>
+    </div>
+</header>
+
+<body>
+    <div class="margin-top-100"></div>
+    <h1 class="page-title" style="margin: 0% 10%;">الرئيسية - صفحة المقالات</h1>
+
+    <ul class="articles-grid" style="margin-top:20px;">
+        {{#each articles}}
+        <li>
+            <img src="{{this.img}}" alt="الصورة الرمزية للمقال">
+            <a href="../article/{{this.title}}">
+                <h2>{{this.title}}</h2>
+            </a>
+            <div class="description">{{this._desc}}</div>
+        </li>
+        {{/each}}
+    </ul>
+</body>

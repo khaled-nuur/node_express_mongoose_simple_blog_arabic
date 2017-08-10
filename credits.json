@@ -1,0 +1,5 @@
+{
+    "DB_URI": "you db uri here",
+    "cookie-secret": "your cookie secret here",
+    "static-path":"\\puplic"
+}

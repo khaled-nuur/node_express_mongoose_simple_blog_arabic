@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>مدونتي المحبوبة - {{pageTitle}}
+    </title>
+    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/swal-theme-google.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../js/snarkdown.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+    <script>
+        function preview(){
+            var body=document.getElementById('article-body')
+            swal({
+                title:'<h1 style="float:right" class="title">معاينة</h1>',
+                text:snarkdown(body.value),
+                html:true
+            })
+        }
+    </script>
+</head>
+
+<header>
+
+    <img src="../img/logo.svg" alt="" class='logo' style="hight:10px;">
+    <h1 id="title">هذه مدونتي</h1>
+    <div class="left">
+        <a href="../create">
+            <button class="header-btn">
+            <img class="icon" src="../img/new.svg" alt="">
+        <span class="header-txt hide-small">مقال جديد</span>
+        </button>
+        </a>
+    </div>
+</header>
+
+<body>
+    <div class="margin-top-100"></div>
+    <h1 class="page-title">{{pageTitle}}</h1>
+    <div class="instructions">
+        يفترض أنك على علم بأساسيات الــ -Markdown، لأن نظام المقالات مبنى باستخدام هذه اللغة. وتعد هذه اللغة من أشهر نظم المقالات و التعليقات في النظم الحديثة، ومن الأمثلة موقع GitHub و حسوب I/O.
+        <br> إذا استخدمت موقع حسوب I/O من قبل فأنت تعرف كفاية من اللغة، إذا أردت معرفة جميع المميزات فيتوجب عليك حينها البحث عن مصادر للتعلم.
+    </div>
+    <form action="/{{action}}" method="post">
+        <input name="title" type="text" class="kufi" placeholder="عنوان المقال" required value="{{title}}">
+        <textarea name="desc" rows="3" cols="40" placeholder="وهنا بعض المعلومات عن المقال، ويتوقع أن تكون مفيدة ومختصرة ولا تزيد جدّا،و ولا تنقص في نفس الوقت عن ثلاثة سطور فقط." class="kufi" required>{{desc}}</textarea>
+        <textarea name="body" id="article-body" cols="30" rows="15" required placeholder=" وهنا جسم المقال.
+    من فضلك ابتعد عما لست متـأكدا من كونه مفيدا، وكل ما ليس فيه مصلحة حقيقية(يسمح للتجربة لكن لا تسىء إلى المنظر العام للموقع ☺♥)
+ لا للــــ-القص واللصق
+   ">{{body}}</textarea>
+        <input name="tags" type="text" placeholder="الوسوم افصلها بعلامة الترقيم الفاصلة" value="{{tags}}">
+        <input name="img" type="url" placeholder="رابط الصورة الرمزية. مثال: http://google.com/logo.png">
+        {{!-- are we updating or creating? let's notify Handlebars--}}
+        {{#if original_title}}
+        <input type="hidden" value="{{title}}" name="original">
+        {{/if}}
+        <div style="width:100%;max-height:40px;">
+            <button onclick="preview()" class="kufi btn half" type="button">
+            <span class="hide-small">معاينة المقال</span>
+            <img class="btn-icon" src="../img/preview.svg" alt="">
+        </button>
+            <button type="submit" class="kufi btn half"><span class="hide-small">حفظ المقال</span><img class="btn-icon" src="../img/save.svg" alt="" style="transform: scaleX(-1);">
+   </button>
+        </div>
+    </form>
+
+    
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang=ar>
+
+<head>
+    <meta charset=UTF-8>
+    <title>مدونتي المحبوبة - {{title}}</title>
+    <link rel=stylesheet href="../css/blog.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+</head>
+<header>
+
+    <img src="../img/logo.svg" alt="" class='logo' style="hight:10px;">
+    <h1 id="title">هذه مدونتي</h1>
+    <div class="left">
+        <a href="../login">
+            <button class="header-btn">
+            <img class="icon" src="../img/log in.svg" alt="">
+        <span class="header-txt hide-small">دخول</span>
+        </button>
+        </a>
+    </div>
+</header>
+
+<body onload="parseMarks(),splitTags()">
+    <article>
+        <h1>{{title}}</h1>
+        <div class="description">{{_desc}}</div>
+        <img src="{{img}}" alt="">
+        <div class="marked">{{body}}</div>
+        <div class="tags" id="tags">{{tags}}</div>
+    </article>
+    <aside>
+        <h3>أخر العناوين :</h3>
+        <hr>
+        <iframe src="../lastTitles" frameborder="0" id="last-titles" style="overflow:hidden; 
+            height:500px;
+           "></iframe>
+        <h4>إعلانات</h4>
+        <hr>
+        <img src="../img/IO_account_ad.png" alt="">
+    </aside>
+    <script src="../js/snarkdown.js"></script>
+    <script>
+        function parseMarks() {
+            var marks = document.getElementsByClassName('marked')
+            // iterate through
+            var eachMark = Object.getOwnPropertyNames(marks) // get as array
+            // forEach loop on the array
+            eachMark.forEach(function(element) {
+                marks[element].innerHTML = snarkdown(marks[element].innerHTML)
+            })
+        }
+
+        function splitTags() {
+            var tags = document.getElementById('tags'),
+                tagsAsText = tags.innerHTML // I do this becouse I must delete intire text outside the loob, so I will backup it!*_*
+            // 'format' tags elment(remove all its contents)
+            tags.innerHTML = ''
+            tagsAsText.split('،').forEach(function(el) {
+                var Tagtag = document.createElement('span');
+                var TagText = document.createTextNode(el);
+                Tagtag.appendChild(TagText);
+                tags.appendChild(Tagtag)
+            })
+        }
+
+    </script>
+</body>
+
+</html>

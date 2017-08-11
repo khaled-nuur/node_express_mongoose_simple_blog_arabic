@@ -1,26 +1,30 @@
 // بسم الله الرحمن الرحيم
-var express = require('express'),
-    credits = require('./credits'),
-    exphbs = require('express-handlebars'),
-    db = require('./dbS'),
-    async = require('async'),
-    path = require('path');
+// استعمل كلمة var في كل سطر
+var express = require('express');
+var credits = require('./credits');
+var exphbs = require('express-handlebars');
+var db = require('./dbS');
+var async = require('async');
+var path = require('path');
 
 var app = express(); // create the application
+
+// اما استعمل "" او استعمل '' ولا تخلط بينهما
 // MIDDLEWARES
-app.use(require('cookie-parser')(credits["cookie-secret"]));
+app.use(require('cookie-parser')(credits['cookie-secret']));
 app.use(require('body-parser')());
-app.use(express.static(
-    path.join(__dirname, 'puplic')));
+app.use(express.static(path.join(__dirname, 'puplic')));
+
+// لا تترك شيء تم تعليقه
 //  HANDLEBARS
-var hbs = exphbs.create({ /* config */ });
-// Register `hbs.engine` with the Express app.
+var hbs = exphbs.create();
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // home
 app.get('/', function (req, res) {
     db.getArticles(0, function (err, data) {
+        // عالج الخطأ هنا
         res.render('home', {
             articles: data
         });
@@ -38,7 +42,12 @@ app.get('/page/:page', function (req, res, next) {
         if (err) {
             next(new Error('500 Internal server error'));
         } else if (data.length == 0) {
-            next(new Error('Articles End'));
+            // next(new Error('Articles End'));
+            // هنا لا ترجع خطأ انما قم بارسال صفحة فارغة من التدوينات
+            // وعلى الفرونت قم بالتحقق من ذلك واعرض كلمة نهاية التدوينات
+            res.render('home', {
+                articles: data
+            });
         } else {
             res.render('home', {
                 articles: data
@@ -247,9 +256,11 @@ app.get('/test-admin', function (req, res) {
         })
     }
 })
-FourZeroFour = require('./404');
+// قم بجلب كل الاعتماديات في اعلى الملف
+var FourZeroFour = require('./404');
 app.use(FourZeroFour.first);
 app.use(FourZeroFour.final);
+
 process.env.NODE_ENV === "production";
 listener = app.listen(process.env.PORT, function () {
     console.log('Started at ' + listener.address().port)

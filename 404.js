@@ -1,10 +1,3 @@
-var express = require('express');
-//HANDLEBARS
-var exphbs = require('express-handlebars');
-var app = express();
-var hbs = exphbs.create({ /* config */ });
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
 function first(req, res, next) {
     var err = new Error('الصفحة مفقودة!!');
     err.status = 404;

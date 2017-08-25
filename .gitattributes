@@ -1,2 +1,5 @@
 #exclude puplic css and imgs
-puplic/*  text
+*.svg text
+*.css text
+*.handlebars text
+*.png binary

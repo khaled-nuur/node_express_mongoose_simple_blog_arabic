@@ -10,12 +10,15 @@
     "express-handlebars": "^3.0.0",
     "mongodb": "^2.2.26",
     "moment": "^2.18.1",
-    "mongoose": "^4.10.0"
+    "mongoose": "^4.10.0",
+    "snyk": "^1.316.2"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "blog",
@@ -26,5 +29,6 @@
   ],
   "author": "Khaled Nuur",
   "license": "MIT",
-  "main": "app.js"
+  "main": "app.js",
+  "snyk": true
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "simple blog with express and mongoose",
   "dependencies": {
-    "async": "^2.4.1",
+    "async": "^3.2.2",
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",

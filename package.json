@@ -7,7 +7,7 @@
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
-    "express-handlebars": "^3.0.0",
+    "express-handlebars": "^7.0.0",
     "mongodb": "^2.2.26",
     "moment": "^2.18.1",
     "mongoose": "^5.12.2"
